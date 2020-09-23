@@ -11,8 +11,9 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import LoginPage from 'containers/LoginPage/Loadable';
+import NotFoundPage from 'pages/NotFoundPage/Loadable';
+import LoginPage from 'pages/LoginPage/Loadable';
+import RegisterPage from 'pages/RegisterPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
 
@@ -25,19 +26,18 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
- const App = () => {
-  return (
-    <AppWrapper>
-      <Helmet titleTemplate="%s - Instagram" defaultTitle="Instagram">
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <Switch>
-        <Route exact path="/login" component={LoginPage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
-      <GlobalStyle />
-    </AppWrapper>
-  );
-}
+const App = () => (
+  <AppWrapper>
+    <Helmet titleTemplate="%s - Instagram" defaultTitle="Instagram">
+      <meta name="description" content="A React.js Boilerplate application" />
+    </Helmet>
+    <Switch>
+      <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/register" component={RegisterPage} />
+      <Route path="" component={NotFoundPage} />
+    </Switch>
+    <GlobalStyle />
+  </AppWrapper>
+);
 
-export default App
+export default App;
