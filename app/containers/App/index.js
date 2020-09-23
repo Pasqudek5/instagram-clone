@@ -10,10 +10,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import ProtectedRoute from 'containers/ProtectedRoute';
 
 import NotFoundPage from 'pages/NotFoundPage/Loadable';
 import LoginPage from 'pages/LoginPage/Loadable';
-import RegisterPage from 'pages/RegisterPage/Loadable';
+import RegisterPage from 'pages/RegisterPage';
 
 import GlobalStyle from '../../global-styles';
 
@@ -33,7 +34,7 @@ const App = () => (
     </Helmet>
     <Switch>
       <Route exact path="/login" component={LoginPage} />
-      <Route exact path="/register" component={RegisterPage} />
+      <ProtectedRoute exact path="/register" component={RegisterPage} />
       <Route path="" component={NotFoundPage} />
     </Switch>
     <GlobalStyle />
