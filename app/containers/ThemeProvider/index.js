@@ -11,21 +11,11 @@ import { createSelector } from 'reselect';
 import { compose } from 'redux';
 import { ThemeProvider as Provider } from 'styled-components';
 
-import { useInjectReducer } from 'utils/injectReducer';
-import reducer from './reducer';
 import { makeSelectTheme } from './selectors';
 
-const key = 'theme';
-
-export const ThemeProvider = ({
-  theme,
-  /* dispatch, */
-  children,
-}) => {
-  useInjectReducer({ key, reducer });
-
-  return <Provider theme={theme}>{React.Children.only(children)}</Provider>;
-};
+export const ThemeProvider = ({ theme, children }) => (
+  <Provider theme={theme}>{React.Children.only(children)}</Provider>
+);
 
 ThemeProvider.propTypes = {
   theme: PropTypes.object.isRequired,
@@ -39,9 +29,7 @@ const mapStateToProps = createSelector(
   }),
 );
 
-const mapDispatchToProps = dispatch => ({
-  dispatch,
-});
+const mapDispatchToProps = dispatch => ({});
 
 const withConnect = connect(
   mapStateToProps,

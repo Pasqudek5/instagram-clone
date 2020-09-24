@@ -24,7 +24,16 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = ({ label, required, disabled, id, name, placeholder, type }) => (
+const Input = ({
+  label,
+  required,
+  disabled,
+  id,
+  name,
+  placeholder,
+  type,
+  handleChange,
+}) => (
   <StyledInput
     aria-label={label}
     aria-required={required}
@@ -33,6 +42,7 @@ const Input = ({ label, required, disabled, id, name, placeholder, type }) => (
     name={name}
     placeholder={placeholder}
     type={type}
+    onChange={handleChange}
   />
 );
 
@@ -51,6 +61,7 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['text', 'password', 'search']).isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default Input;

@@ -33,8 +33,8 @@ const App = () => (
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
     <Switch>
-      <Route exact path="/login" component={LoginPage} />
-      <ProtectedRoute exact path="/register" component={RegisterPage} />
+      <Route path="/login" component={LoginPage} />
+      <ProtectedRoute path="/register" component={RegisterPage} />
       <Route path="" component={NotFoundPage} />
     </Switch>
     <GlobalStyle />

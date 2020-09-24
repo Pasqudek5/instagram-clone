@@ -8,7 +8,7 @@
  */
 
 import produce from 'immer';
-import { LOGIN, REGISTER } from './constants';
+import { LOGIN_SUCCESS } from 'pages/LoginPage/constants';
 
 // The initial state of the App
 export const initialState = {
@@ -22,13 +22,9 @@ export const initialState = {
 const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case LOGIN:
+      case LOGIN_SUCCESS:
         draft.isAuthenticated = true;
-        draft.error = false;
         draft.user = action.user;
-        break;
-
-      case REGISTER:
         break;
     }
   });

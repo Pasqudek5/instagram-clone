@@ -27,14 +27,20 @@ import FormWrapper from './components/FormWrapper';
 import FormLogo from './components/FormLogo';
 import ForgotLink from './components/ForgotLink';
 
-import makeSelectLoginPage from './selectors';
+import { makeSelectLogin, makeSelectPassword } from './selectors';
+import { changeInputValueAction, loginAction } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-const key = 'login';
+const key = 'loginPage';
 
-export const LoginPage = ({ dispatch }) => {
+export const LoginPage = ({
+  login,
+  password,
+  onChangeInputValue,
+  onSubmit,
+}) => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -48,21 +54,23 @@ export const LoginPage = ({ dispatch }) => {
       </Helmet>
       <Hero />
       <FormWrapper>
-        <Form>
+        <Form onSubmit={onSubmit}>
           <FormLogo fullLogo={isDesktop} />
           <Input
             placeholder="Number, username or email"
             label="Number, username or email"
             name="login"
             type="text"
-            // handleChange={() => {}}
+            handleChange={onChangeInputValue}
+            value={login}
           />
           <Input
             placeholder="Password"
             label="Password"
             name="password"
             type="password"
-            // handleChange={() => {}}
+            handleChange={onChangeInputValue}
+            value={password}
           />
           <ForgotLink to="/login?" variant="primary">
             Forgot your password?
@@ -89,15 +97,24 @@ export const LoginPage = ({ dispatch }) => {
 };
 
 LoginPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  login: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  onChangeInputValue: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  loginPage: makeSelectLoginPage(),
+  login: makeSelectLogin(),
+  password: makeSelectPassword(),
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatch,
+  onChangeInputValue: event =>
+    dispatch(changeInputValueAction(event.target.name, event.target.value)),
+  onSubmit: event => {
+    event.preventDefault();
+    dispatch(loginAction());
+  },
 });
 
 const withConnect = connect(

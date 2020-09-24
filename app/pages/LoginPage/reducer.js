@@ -4,16 +4,19 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import { LOGIN_INPUT_VALUE_CHANGE } from './constants';
 
-export const initialState = {};
+export const initialState = {
+  login: '',
+  password: '',
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const loginPageReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, draft => {
     switch (action.type) {
-      case DEFAULT_ACTION:
-        break;
+      case LOGIN_INPUT_VALUE_CHANGE:
+        draft[action.name] = action.value;
     }
   });
 
