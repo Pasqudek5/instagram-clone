@@ -10,11 +10,14 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
-import ProtectedRoute from 'containers/ProtectedRoute';
+import PrivateRoute from 'containers/PrivateRoute';
 
-import NotFoundPage from 'pages/NotFoundPage/Loadable';
+import FeedPage from 'pages/FeedPage/Loadable';
 import LoginPage from 'pages/LoginPage/Loadable';
 import RegisterPage from 'pages/RegisterPage';
+import NotFoundPage from 'pages/NotFoundPage/Loadable';
+
+import routes from 'utils/routes';
 
 import GlobalStyle from '../../global-styles';
 
@@ -33,9 +36,10 @@ const App = () => (
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
     <Switch>
-      <Route path="/login" component={LoginPage} />
-      <ProtectedRoute path="/register" component={RegisterPage} />
-      <Route path="" component={NotFoundPage} />
+      <PrivateRoute exact path={routes.feed} component={FeedPage} />
+      <Route path={routes.auth.login} component={LoginPage} />
+      <Route path={routes.auth.register} component={RegisterPage} />
+      <Route path={routes.notFound} component={NotFoundPage} />
     </Switch>
     <GlobalStyle />
   </AppWrapper>

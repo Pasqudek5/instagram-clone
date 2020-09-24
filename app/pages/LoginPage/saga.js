@@ -2,6 +2,7 @@ import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import request from 'utils/request';
 import api from 'utils/api';
+import routes from 'utils/routes';
 import { makeSelectLogin, makeSelectPassword } from './selectors';
 import { loginSuccessAction } from './actions';
 import { LOGIN_REQUEST } from './constants';
@@ -15,7 +16,7 @@ export function* login() {
   try {
     const user = yield call(request, api(payload.login));
     yield put(loginSuccessAction(user));
-    yield put(push('/'));
+    yield put(push(routes.feed));
   } catch (error) {
     console.log('error', error);
   }

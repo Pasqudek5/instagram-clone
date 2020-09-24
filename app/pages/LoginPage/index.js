@@ -14,6 +14,8 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import routes from 'utils/routes';
+
 import useMediaQuery from 'hooks/useMediaQuery';
 import Input from 'components/Input';
 import Button from 'components/Button';
@@ -72,12 +74,12 @@ export const LoginPage = ({
             handleChange={onChangeInputValue}
             value={password}
           />
-          <ForgotLink to="/login?" variant="primary">
+          <ForgotLink to={routes.auth.forgotPassword} variant="primary">
             Forgot your password?
           </ForgotLink>
           <Button type="submit">Log in</Button>
         </Form>
-        <Link to="/login?" variant="secondary">
+        <Link to={routes.auth.login} variant="secondary">
           <Icon type="facebook" />
           Continue as Jhon Doe
         </Link>
@@ -88,7 +90,7 @@ export const LoginPage = ({
         >
           OR
         </span>
-        <Link to="/register" variant="secondary">
+        <Link to={routes.auth.register} variant="secondary">
           Sign Up
         </Link>
       </FormWrapper>
