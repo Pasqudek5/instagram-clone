@@ -2,8 +2,6 @@
  *
  * Button.js
  *
- * A common button, if you pass it a prop "route" it'll render a link to a react-router route
- * otherwise it'll render a link with an onclick
  */
 
 import React from 'react';
@@ -11,11 +9,6 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 const StyledButton = styled.button`
-  -webkit-font-smoothing: antialiased;
-  -webkit-touch-callout: none;
-  outline: 0;
-  border: 0;
-  width: 100%;
   border-radius: ${({ theme }) => theme.radius.md};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   font-size: ${({ theme }) => theme.sizes.sm};
@@ -23,6 +16,11 @@ const StyledButton = styled.button`
   color: ${({ theme }) => theme.palette.text.white};
   background-color: ${({ theme }) => theme.palette.primary};
   box-shadow: 0 1rem 3.5rem rgba(112, 144, 176, 0.8);
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  border: 0;
+  width: 100%;
+  height: auto;
   transition: all 200ms ease-in-out;
 
   cursor: pointer;
@@ -42,6 +40,8 @@ const Button = ({ onClick, type, disabled, children }) => (
     {children}
   </StyledButton>
 );
+
+Button.defaultProps = {};
 
 Button.propTypes = {
   onClick: PropTypes.func,

@@ -22,6 +22,7 @@ import Button from 'components/Button';
 import Icon from 'components/Icon';
 import Link from 'components/Link';
 
+import { FaFacebook } from 'react-icons/fa';
 import Hero from './components/Hero';
 import Wrapper from './components/Wrapper';
 import Form from './components/Form';
@@ -57,7 +58,7 @@ export const LoginPage = ({
       <Hero />
       <FormWrapper>
         <Form onSubmit={onSubmit}>
-          <FormLogo fullLogo={isDesktop} />
+          <FormLogo type={isDesktop ? 'full' : 'icon'} />
           <Input
             placeholder="Number, username or email"
             label="Number, username or email"
@@ -80,7 +81,7 @@ export const LoginPage = ({
           <Button type="submit">Log in</Button>
         </Form>
         <Link to={routes.auth.login} variant="secondary">
-          <Icon type="facebook" />
+          <Icon icon={FaFacebook} />
           Continue as Jhon Doe
         </Link>
         <span

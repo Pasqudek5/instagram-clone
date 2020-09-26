@@ -47,7 +47,7 @@ export const RegisterPage = ({ dispatch }) => {
       <Hero />
       <FormWrapper>
         <Form>
-          <FormLogo fullLogo={isDesktop} />
+          <FormLogo type={isDesktop ? 'full' : 'icon'} />
           <Input
             placeholder="Phone number or email"
             label="Phone number or email"

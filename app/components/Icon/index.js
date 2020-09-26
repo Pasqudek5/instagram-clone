@@ -6,25 +6,46 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { IconContext } from 'react-icons';
+import styled, { css } from 'styled-components';
 
-import Img from 'components/Img';
-
-const StyledImg = styled(Img)`
-  display: inline-block;
-  margin: 1rem;
+const IconWrapperStyle = css`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 1rem;
+  color: ${({ theme }) => theme.palette.text.secondary};
 `;
 
-/* eslint-disable */
-const icons = {
-  facebook: require('images/icons/facebook.svg'),
-};
-/* eslint-enable */
+const IconWrapperButton = styled.button`
+  cursor: pointer;
+  ${IconWrapperStyle};
+  background-color: transparent;
+  border: 0;
+  border-radius: ${({ theme }) => theme.radius.md};
+  padding: 1rem;
+  font-size: 2.4rem;
+`;
 
-const Icon = ({ type }) => <StyledImg src={icons[type]} alt="icon" />;
+const IconWrapperSpan = styled.span`
+  ${IconWrapperStyle};
+`;
+
+const Icon = ({ icon: IconComponent, onClick, ...props }) => {
+  const Wrapper = onClick ? IconWrapperButton : IconWrapperSpan;
+
+  return (
+    <IconContext.Provider value={props}>
+      <Wrapper onClick={onClick}>
+        <IconComponent />
+      </Wrapper>
+    </IconContext.Provider>
+  );
+};
 
 Icon.propTypes = {
-  type: PropTypes.oneOf(Object.keys(icons)).isRequired,
+  onClick: PropTypes.func,
+  icon: PropTypes.elementType.isRequired,
 };
 
 export default Icon;

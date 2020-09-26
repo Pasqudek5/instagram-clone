@@ -33,6 +33,7 @@ const Input = ({
   placeholder,
   type,
   handleChange,
+  ...props
 }) => (
   <StyledInput
     aria-label={label}
@@ -43,6 +44,7 @@ const Input = ({
     placeholder={placeholder}
     type={type}
     onChange={handleChange}
+    {...props}
   />
 );
 

@@ -36,7 +36,7 @@ const App = () => (
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
     <Switch>
-      <PrivateRoute exact path={routes.feed} component={FeedPage} />
+      <Route exact path={routes.feed} component={FeedPage} />
       <Route path={routes.auth.login} component={LoginPage} />
       <Route path={routes.auth.register} component={RegisterPage} />
       <Route path={routes.notFound} component={NotFoundPage} />
