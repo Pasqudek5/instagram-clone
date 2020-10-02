@@ -13,7 +13,6 @@ const IconWrapperStyle = css`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0.5rem 1rem;
   color: ${({ theme }) => theme.palette.text.secondary};
 `;
 

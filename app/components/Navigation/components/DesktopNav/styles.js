@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Input from 'components/Input';
+import Icon from 'components/Icon';
+import Link from 'components/Link';
 
 export const Nav = styled.div`
   width: 100%;
@@ -37,12 +39,13 @@ export const Header = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 `;
 
 export const UserDetails = styled.div`
   margin: 2rem 0 5rem 0;
-  text-align: center;
   width: 100%;
+  justify-content: center;
 `;
 
 export const UserActivityList = styled.ul`
@@ -64,13 +67,19 @@ export const NavigationList = styled.nav`
   list-style-type: none;
 `;
 
-export const NavigationItem = styled.li`
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: ${({ theme }) => theme.radius.md};
+export const NavIcon = styled(Icon)`
+  margin-right: ${({ theme }) => theme.spacing.xs};
+`;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.text.secondary};
-    color: ${({ theme }) => theme.palette.text.white} !important;
+export const NavigationItem = styled.li`
+  & > ${Link} {
+    padding: ${({ theme }) => theme.spacing.xs}
+      ${({ theme }) => theme.spacing.sm};
+    border-radius: ${({ theme }) => theme.radius.md};
+  }
+
+  :hover * {
+    background-color: ${({ theme }) => theme.palette.primary};
+    color: ${({ theme }) => theme.palette.text.white};
   }
 `;

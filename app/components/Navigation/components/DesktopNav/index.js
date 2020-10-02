@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Icon from 'components/Icon';
 import Story from 'components/Story';
+import Icon from 'components/Icon';
 import Link from 'components/Link';
 import Typography from 'components/Typography';
 import Logo from 'components/Logo';
@@ -64,7 +64,7 @@ const a = () => {};
 const DesktopNav = () => (
   <S.Nav>
     <S.DrawerWrapper>
-      <Logo />
+      <Logo type="text" />
       <S.Header>
         <Story
           username="pasqudek"
@@ -96,8 +96,10 @@ const DesktopNav = () => (
         {routes.map(({ to, title, icon }) => (
           <S.NavigationItem key={title}>
             <Link variant="secondary" to={to}>
-              <Icon icon={icon} />
-              {title}
+              <Typography variant="subheading">
+                <S.NavIcon icon={icon} />
+                {title}
+              </Typography>
             </Link>
           </S.NavigationItem>
         ))}

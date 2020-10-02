@@ -89,8 +89,10 @@ const styles = theme.variants('mode', 'variant', {
 });
 
 const StyledTypography = styled.h1`
-  display: inline-block;
   ${styles};
+  display: flex;
+  align-items: center;
+  justify-content: inherit;
 `;
 
 const typography = {
