@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from 'containers/PrivateRoute';
 
+import Navigation from 'components/Navigation';
 import FeedPage from 'pages/FeedPage/Loadable';
 import LoginPage from 'pages/LoginPage/Loadable';
 import RegisterPage from 'pages/RegisterPage';
@@ -30,17 +31,33 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+const ContentWrapper = styled.main`
+  overflow-x: hidden;
+
+  padding: ${({ theme }) => theme.spacing.xxl}
+    ${({ theme }) => theme.spacing.lg} 0 ${({ theme }) => theme.spacing.lg};
+
+  ${({ theme }) => theme.mq.desktop`
+    padding-left: 35rem;
+  `};
+`;
+
 const App = () => (
   <AppWrapper>
     <Helmet titleTemplate="%s - Instagram" defaultTitle="Instagram">
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
-    <Switch>
-      <Route exact path={routes.feed} component={FeedPage} />
-      <Route path={routes.auth.login} component={LoginPage} />
-      <Route path={routes.auth.register} component={RegisterPage} />
-      <Route path={routes.notFound} component={NotFoundPage} />
-    </Switch>
+
+    <Navigation />
+    <ContentWrapper>
+      <Switch>
+        <Route exact path={routes.feed} component={FeedPage} />
+        <Route path={routes.auth.login} component={LoginPage} />
+        <Route path={routes.auth.register} component={RegisterPage} />
+        <Route path={routes.notFound} component={NotFoundPage} />
+      </Switch>
+    </ContentWrapper>
+
     <GlobalStyle />
   </AppWrapper>
 );

@@ -5,6 +5,14 @@ import lightPalette from './light';
 const sizes = {
   sm: '1.6rem',
   md: '1.8rem',
+  h1: '3.125em',
+  h2: '2.618em',
+  h3: '1.931em',
+  h4: '1.618em',
+  h5: '1.194em',
+  h6: '1em',
+  subheading: '1em',
+  body: '0.875em',
 };
 
 const radius = {

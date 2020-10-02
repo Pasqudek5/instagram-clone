@@ -9,26 +9,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-
-export const HomePage = () => {
-
-  return (
-    <div>
-    </div>
-  );
-}
+export const HomePage = () => <div />;
 
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
 
-export default compose(
-  withConnect,
-)(HomePage);
+export default compose(withConnect)(HomePage);

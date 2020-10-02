@@ -21,6 +21,7 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import Icon from 'components/Icon';
 import Link from 'components/Link';
+import Typography from 'components/Typography';
 
 import { FaFacebook } from 'react-icons/fa';
 import Hero from './components/Hero';
@@ -82,17 +83,17 @@ export const LoginPage = ({
         </Form>
         <Link to={routes.auth.login} variant="secondary">
           <Icon icon={FaFacebook} />
-          Continue as Jhon Doe
+          <Typography variant="body">Continue as Jhon Doe</Typography>
         </Link>
         <span
           style={{
             color: '#8D8D8D',
           }}
         >
-          OR
+          <Typography variant="body2">OR</Typography>
         </span>
         <Link to={routes.auth.register} variant="secondary">
-          Sign Up
+          <Typography variant="body">Sign Up</Typography>
         </Link>
       </FormWrapper>
     </Wrapper>

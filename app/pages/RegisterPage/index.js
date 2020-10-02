@@ -18,6 +18,7 @@ import useMediaQuery from 'hooks/useMediaQuery';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Link from 'components/Link';
+import Typography from 'components/Typography';
 
 import Hero from './components/Hero';
 import Wrapper from './components/Wrapper';
@@ -79,7 +80,7 @@ export const RegisterPage = ({ dispatch }) => {
           <Button type="submit">Sign up</Button>
         </Form>
         <Link to="/login" variant="secondary">
-          Already have account? Log in
+          <Typography variant="body">Already have account? Log in</Typography>
         </Link>
       </FormWrapper>
     </Wrapper>
