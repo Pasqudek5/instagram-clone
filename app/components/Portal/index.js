@@ -9,7 +9,7 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 const Portal = ({ children }) => {
-  const mount = document.getElementById('portal-root');
+  const mount = document.getElementById('portal');
   const el = document.createElement('div');
 
   useEffect(() => {

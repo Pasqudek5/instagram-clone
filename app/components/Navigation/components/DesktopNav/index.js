@@ -62,7 +62,18 @@ const routes = [
 const a = () => {};
 
 const DesktopNav = () => (
-  <S.Nav>
+  <React.Fragment>
+    <S.NavWrapper>
+      <S.SearchInput
+        placeholder="Search"
+        label="Search"
+        type="search"
+        handleChange={() => {}}
+      />
+      <Icon onClick={a} icon={FiBell} />
+      <Icon onClick={a} icon={FiMail} />
+      <Icon onClick={a} icon={FiPlusSquare} />
+    </S.NavWrapper>
     <S.DrawerWrapper>
       <Logo type="text" />
       <S.Header>
@@ -105,18 +116,7 @@ const DesktopNav = () => (
         ))}
       </S.NavigationList>
     </S.DrawerWrapper>
-    <S.NavWrapper>
-      <S.SearchInput
-        placeholder="Search"
-        label="Search"
-        type="search"
-        handleChange={() => {}}
-      />
-      <Icon onClick={a} icon={FiBell} />
-      <Icon onClick={a} icon={FiMail} />
-      <Icon onClick={a} icon={FiPlusSquare} />
-    </S.NavWrapper>
-  </S.Nav>
+  </React.Fragment>
 );
 
 export default DesktopNav;

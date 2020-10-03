@@ -12,8 +12,6 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import Navigation from 'components/Navigation';
-
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import styled from 'styled-components';
@@ -25,18 +23,28 @@ import messages from './messages';
 
 const key = 'feedPage';
 
+export const Layout = styled.main`
+  overflow-x: hidden;
+  padding-top: 7rem;
+
+  ${({ theme }) => theme.mq.desktop`
+    padding-left: calc(350px + ${theme.spacing.lg});
+    padding-right: ${theme.spacing.lg};
+  `}
+`;
+
 export const FeedPage = () => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   return (
-    <React.Fragment>
+    <Layout>
       <Helmet>
         <title>FeedPage</title>
         <meta name="description" content="Description of FeedPage" />
       </Helmet>
       <Stories />
-    </React.Fragment>
+    </Layout>
   );
 };
 

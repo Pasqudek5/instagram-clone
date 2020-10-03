@@ -7,6 +7,7 @@ const Form = styled.form`
   justify-items: center;
   width: 100%;
   max-width: 300px;
+  text-align: center;
 
   & > * {
     margin-bottom: 1rem;

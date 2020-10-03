@@ -10,15 +10,15 @@ import styled from 'styled-components';
 import Img from 'components/Img';
 
 const UserAvatar = styled(Img)`
-  width: 8rem;
+  width: 7rem;
   border-radius: 50%;
   border: 0.5rem solid #fff;
 `;
 
 const StoriesAvatarStatus = styled.div`
   margin: 0 0.3rem;
-  width: 8.5rem;
-  height: 8.5rem;
+  width: 7.5rem;
+  height: 7.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,27 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Input from 'components/Input';
 import Icon from 'components/Icon';
 import Link from 'components/Link';
 
-export const Nav = styled.div`
-  width: 100%;
-  height: 100%;
+const BaseNavStyles = css`
   position: fixed;
   left: 0;
   top: 0;
-  display: flex;
 `;
 
 export const NavWrapper = styled.nav`
+  ${BaseNavStyles};
   width: 100%;
   height: 6rem;
   background-color: ${({ theme }) => theme.palette.background};
   display: flex;
   align-items: center;
-  padding: 0 ${({ theme }) => theme.spacing.lg};
+  padding: 0 ${({ theme }) => theme.spacing.lg} 0 37rem;
 `;
 
 export const DrawerWrapper = styled.aside`
+  ${BaseNavStyles};
   height: 100%;
   width: 35rem;
   background-color: ${({ theme }) => theme.palette.gray};

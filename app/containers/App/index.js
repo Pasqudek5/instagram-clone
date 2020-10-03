@@ -10,15 +10,21 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
 import PrivateRoute from 'containers/PrivateRoute';
 
 import Navigation from 'components/Navigation';
 import FeedPage from 'pages/FeedPage/Loadable';
 import LoginPage from 'pages/LoginPage/Loadable';
-import RegisterPage from 'pages/RegisterPage';
+import RegisterPage from 'pages/RegisterPage/Loadable';
 import NotFoundPage from 'pages/NotFoundPage/Loadable';
 
 import routes from 'utils/routes';
+import { makeSelectIsAuthenticated } from './selectors';
 
 import GlobalStyle from '../../global-styles';
 
@@ -31,35 +37,35 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-const ContentWrapper = styled.main`
-  overflow-x: hidden;
-
-  padding: ${({ theme }) => theme.spacing.xxl}
-    ${({ theme }) => theme.spacing.lg} 0 ${({ theme }) => theme.spacing.lg};
-
-  ${({ theme }) => theme.mq.desktop`
-    padding-left: 35rem;
-  `};
-`;
-
-const App = () => (
-  <AppWrapper>
+const App = ({ isAuthenticated }) => (
+  <React.Fragment>
     <Helmet titleTemplate="%s - Instagram" defaultTitle="Instagram">
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
 
-    <Navigation />
-    <ContentWrapper>
+    {isAuthenticated ? <Navigation /> : <Navigation />}
+
+    <AppWrapper>
       <Switch>
         <Route exact path={routes.feed} component={FeedPage} />
-        <Route path={routes.auth.login} component={LoginPage} />
-        <Route path={routes.auth.register} component={RegisterPage} />
+        <Route exact path={routes.auth.login} component={LoginPage} />
+        <Route exact path={routes.auth.register} component={RegisterPage} />
         <Route path={routes.notFound} component={NotFoundPage} />
       </Switch>
-    </ContentWrapper>
 
-    <GlobalStyle />
-  </AppWrapper>
+      <GlobalStyle />
+    </AppWrapper>
+  </React.Fragment>
 );
 
-export default App;
+App.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: makeSelectIsAuthenticated(),
+});
+
+const withConnect = connect(mapStateToProps);
+
+export default compose(withConnect)(App);
