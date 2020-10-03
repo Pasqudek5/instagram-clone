@@ -8,88 +8,134 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import theme from 'styled-theming';
+import { Light, Dark } from 'themes';
+import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
 
-const styles = theme.variants('mode', 'variant', {
+const TypographyVariant = theme.variants('mode', 'variant', {
   h1: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.primary};
-      font-size: ${t.sizes.h1};
-      margin-bottom: 0.4rem;
-      font-weight: bold;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.base};
+      color: ${({ theme }) => theme.font.size['1']};
+      font-weight: ${({ theme }) => theme.font.weight.bold};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.base};
+      color: ${({ theme }) => theme.font.size['1']};
+      font-weight: ${({ theme }) => theme.font.weight.bold};
     `,
   },
   h2: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.primary};
-      font-size: ${t.sizes.h2};
-      margin-bottom: 0.4rem;
-      font-weight: bold;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.base};
+      color: ${({ theme }) => theme.font.size['2']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.base};
+      color: ${({ theme }) => theme.font.size['2']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
     `,
   },
   h3: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.primary};
-      font-size: ${t.sizes.h3};
-      margin-bottom: 0.4rem;
-      font-weight: bold;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.base};
+      color: ${({ theme }) => theme.font.size['3']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.base};
+      color: ${({ theme }) => theme.font.size['3']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
     `,
   },
   h4: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.primary};
-      font-size: ${t.sizes.h4};
-      margin-bottom: 0.4rem;
-      font-weight: normal;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.base};
+      color: ${({ theme }) => theme.font.size['4']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.base};
+      color: ${({ theme }) => theme.font.size['4']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
     `,
   },
   h5: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.primary};
-      margin-bottom: 0.4rem;
-      font-size: ${t.sizes.h5};
-      font-weight: 600;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.base};
+      color: ${({ theme }) => theme.font.size['5']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.base};
+      color: ${({ theme }) => theme.font.size['5']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
     `,
   },
   h6: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.primary};
-      font-size: ${t.sizes.h6};
-      margin-bottom: 0.4rem;
-      font-weight: 600;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.base};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.base};
+      color: ${({ theme }) => theme.font.size['1']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
     `,
   },
   subheading: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.secondary};
-      font-size: ${t.sizes.subheading};
-      font-weight: 400;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.alt};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.alt};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
     `,
   },
   subheading2: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.secondary};
-      font-size: ${t.sizes.body};
-      font-weight: 400;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.alt2};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.semibold};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.alt2};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.semibold};
     `,
   },
   body: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.primary};
-      font-size: ${t.sizes.body};
-      font-weight: 400;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.base};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.base};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
     `,
   },
   body2: {
-    light: ({ theme: t }) => css`
-      color: ${t.palette.text.secondary};
-      font-size: ${t.sizes.body};
-      font-weight: 400;
+    [LIGHT_MODE]: css`
+      color: ${Light.text.alt};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
+    `,
+    [DARK_MODE]: css`
+      color: ${Dark.text.alt};
+      color: ${({ theme }) => theme.font.size['6']};
+      font-weight: ${({ theme }) => theme.font.weight.normal};
     `,
   },
 });
 
 const StyledTypography = styled.h1`
-  ${styles};
+  ${TypographyVariant};
   display: flex;
   align-items: center;
   justify-content: inherit;

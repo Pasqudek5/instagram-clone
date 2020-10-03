@@ -56,10 +56,10 @@ export const LoginPage = ({
         <title>Instagram</title>
         <meta name="description" content={messages.meta.description} />
       </Helmet>
-      <Hero />
+      {isDesktop && <Hero />}
       <FormWrapper>
         <Form onSubmit={onSubmit}>
-          <FormLogo type={isDesktop ? 'full' : 'icon'} />
+          <FormLogo type="icon" />
           <Input
             placeholder="Number, username or email"
             label="Number, username or email"
@@ -79,19 +79,15 @@ export const LoginPage = ({
           <ForgotLink to={routes.auth.forgotPassword} variant="primary">
             Forgot your password?
           </ForgotLink>
-          <Button type="submit">Log in</Button>
+          <Button type="submit" variant="full-width">
+            Log in
+          </Button>
         </Form>
         <Link to={routes.auth.login} variant="secondary">
-          <Icon icon={FaFacebook} />
+          <Icon variant="small" type={FaFacebook} />
           <Typography variant="body">Continue as Jhon Doe</Typography>
         </Link>
-        <span
-          style={{
-            color: '#8D8D8D',
-          }}
-        >
-          <Typography variant="body2">OR</Typography>
-        </span>
+        <Typography variant="body2">OR</Typography>
         <Link to={routes.auth.register} variant="secondary">
           <Typography variant="body">Sign Up</Typography>
         </Link>

@@ -6,37 +6,31 @@
 
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import theme from 'styled-theming';
+import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
+import { Light, Dark } from 'themes';
 
-const color = theme.variants('mode', 'variant', {
-  default: {
-    light: ({ theme: t }) => t.palette.text.secondary,
-  },
-  primary: {
-    light: ({ theme: t }) => t.palette.primary,
-  },
-  secondary: {
-    light: ({ theme: t }) => t.palette.text.primary,
-  },
+const themeLink = theme('mode', {
+  [LIGHT_MODE]: css`
+    color: ${Light.text.link};
+  `,
+  [DARK_MODE]: css`
+    color: ${Dark.text.link};
+  `,
 });
 
 const StyledLink = styled(Link)`
-  color: ${color};
-  width: 100%;
-  height: 100%;
+  ${themeLink};
+  font-size: ${({ theme }) => theme.font.size['5']};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
   display: flex;
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
 `;
 
-StyledLink.defaultProps = {
-  variant: 'default',
-};
-
 StyledLink.propTypes = {
-  variant: PropTypes.oneOf(['primary', 'secondary', 'default']),
   to: PropTypes.string.isRequired,
 };
 

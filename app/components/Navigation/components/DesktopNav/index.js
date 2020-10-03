@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Story from 'components/Story';
+// import Story from 'components/Story';
 import Icon from 'components/Icon';
+import Button, { ButtonIcon } from 'components/Button';
+import Logo from 'components/Logo';
 import Link from 'components/Link';
 import Typography from 'components/Typography';
-import Logo from 'components/Logo';
 
 import {
   FiBell,
@@ -62,61 +63,27 @@ const routes = [
 const a = () => {};
 
 const DesktopNav = () => (
-  <React.Fragment>
-    <S.NavWrapper>
-      <S.SearchInput
-        placeholder="Search"
-        label="Search"
-        type="search"
-        handleChange={() => {}}
-      />
-      <Icon onClick={a} icon={FiBell} />
-      <Icon onClick={a} icon={FiMail} />
-      <Icon onClick={a} icon={FiPlusSquare} />
-    </S.NavWrapper>
-    <S.DrawerWrapper>
-      <Logo type="text" />
-      <S.Header>
-        <Story
-          username="pasqudek"
-          avatar="https://picsum.photos/200"
-          viewed={false}
-        />
-        <S.UserDetails>
-          <Typography variant="h5">Dawid Wesolowski</Typography>
-          <Typography variant="subheading">@pasqudek</Typography>
-
-          <S.UserActivityList>
-            <S.UserActivity>
-              <Typography variant="h6">46</Typography>
-              <Typography variant="subheading2">posts</Typography>
-            </S.UserActivity>
-            <S.UserActivity>
-              <Typography variant="h6">2.6k</Typography>
-              <Typography variant="subheading2">followers</Typography>
-            </S.UserActivity>
-            <S.UserActivity>
-              <Typography variant="h6">526</Typography>
-              <Typography variant="subheading2">following</Typography>
-            </S.UserActivity>
-          </S.UserActivityList>
-        </S.UserDetails>
-      </S.Header>
-
-      <S.NavigationList>
-        {routes.map(({ to, title, icon }) => (
-          <S.NavigationItem key={title}>
-            <Link variant="secondary" to={to}>
-              <Typography variant="subheading">
-                <S.NavIcon icon={icon} />
-                {title}
-              </Typography>
-            </Link>
-          </S.NavigationItem>
-        ))}
-      </S.NavigationList>
-    </S.DrawerWrapper>
-  </React.Fragment>
+  <S.NavWrapper>
+    <Link to="/">
+      <Logo type="icon" />
+    </Link>
+    <S.SearchInput
+      placeholder="Search"
+      label="Search"
+      type="search"
+      handleChange={() => {}}
+    />
+    <Button variant="icon">
+      <Icon variant="small" type={FiBell} />
+    </Button>
+    <Button variant="icon">
+      <Icon variant="small" type={FiMail} />
+    </Button>
+    <ButtonIcon>
+      <Icon variant="small" type={FiPlusSquare} />
+      <Typography variant="h3">Add Photo</Typography>
+    </ButtonIcon>
+  </S.NavWrapper>
 );
 
 export default DesktopNav;

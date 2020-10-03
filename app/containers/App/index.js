@@ -8,14 +8,17 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import theme from 'styled-theming';
 
 import PrivateRoute from 'containers/PrivateRoute';
+import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
+import { Light, Dark } from 'themes';
 
 import Navigation from 'components/Navigation';
 import FeedPage from 'pages/FeedPage/Loadable';
@@ -28,12 +31,22 @@ import { makeSelectIsAuthenticated } from './selectors';
 
 import GlobalStyle from '../../global-styles';
 
+console.log({ Light });
+
+const themeAppWrapper = theme('mode', {
+  [LIGHT_MODE]: css`
+    background-color: ${Light.background.body};
+  `,
+  [DARK_MODE]: css`
+    background-color: ${Dark.background.body};
+  `,
+});
+
 const AppWrapper = styled.div`
-  //max-width: calc(768px + 16px * 2);
+  ${themeAppWrapper};
   margin: 0 auto;
   display: flex;
   min-height: 100%;
-  //padding: 0 16px;
   flex-direction: column;
 `;
 
@@ -47,7 +60,7 @@ const App = ({ isAuthenticated }) => (
 
     <AppWrapper>
       <Switch>
-        <Route exact path={routes.feed} component={FeedPage} />
+        {/* <Route exact path={routes.feed} component={FeedPage} /> */}
         <Route exact path={routes.auth.login} component={LoginPage} />
         <Route exact path={routes.auth.register} component={RegisterPage} />
         <Route path={routes.notFound} component={NotFoundPage} />

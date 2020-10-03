@@ -10,7 +10,7 @@ const Form = styled.form`
   text-align: center;
 
   & > * {
-    margin-bottom: 1rem;
+    margin-bottom: ${({ theme }) => theme.space['1']};
   }
 `;
 

@@ -4,12 +4,12 @@
  *
  */
 import produce from 'immer';
-import { CHANGE_MODE } from './constants';
-import base, { DEFAULT_MODE } from '../../themes';
+import styles from 'themes';
+import { CHANGE_MODE, DARK_MODE, LIGHT_MODE } from './constants';
 
 export const initialState = {
-  mode: DEFAULT_MODE,
-  ...base,
+  mode: DARK_MODE,
+  ...styles,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -17,7 +17,7 @@ const themeProviderReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case CHANGE_MODE:
-        draft.mode = state.mode;
+        draft.mode = draft.mode === LIGHT_MODE ? DARK_MODE : LIGHT_MODE;
         break;
     }
   });

@@ -9,30 +9,22 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     font-size: 62.5%;
-    height: 100%;
-    width: 100%;
-    line-height: 1.5;
+     line-height: ${({ theme }) => theme.font.line.height.body};
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 1.6em;
+    font-family: ${({ theme }) => theme.font.base};
+    font-size: ${({ theme }) => theme.font.size.base};
   }
 
   body.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-
-  #app {
-    background-color: #ffffff;
-    min-height: 100%;
-    min-width: 100%;
+    font-family: ${({ theme }) => theme.font.display};
   }
 
   p,
   label {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.5em;
+    font-family: ${({ theme }) => theme.font.display};
+    line-height: ${({ theme }) => theme.font.line.height.body};
   }
 `;
 

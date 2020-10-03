@@ -7,10 +7,10 @@ const LoginWrapper = styled.section`
   justify-content: center;
   width: 100%;
   height: 100vh;
-  padding: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.space['2']};
 
   & > * {
-    margin-bottom: 3rem;
+    margin-bottom: ${({ theme }) => theme.space['3']};
   }
 `;
 
