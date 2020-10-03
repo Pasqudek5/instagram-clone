@@ -11,8 +11,6 @@ import theme from 'styled-theming';
 import { Light, Dark } from 'themes';
 import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
 
-import Icon from 'components/Icon';
-
 const ButtonMode = theme('mode', {
   [LIGHT_MODE]: css`
     background-color: ${Light.background.alt2};

@@ -9,45 +9,47 @@ import {
   FiMail,
 } from 'react-icons/fi';
 
-import Story from 'components/Story';
+// import Story from 'components/Story';
 import Link from 'components/Link';
 import Typography from 'components/Typography';
 
+import routes from 'utils/routes';
+
 import * as S from './styles';
 
-const routes = [
+const r = [
   {
     to: '/',
     title: 'Feed',
     icon: FiHome,
   },
   {
-    to: '/',
+    to: '/explore',
     title: 'Explore',
     icon: FiSearch,
   },
   {
-    to: '/',
+    to: '/direct',
     title: 'Direct',
     icon: FiMail,
   },
   {
-    to: '/',
+    to: '/tv',
     title: 'IG TV',
     icon: FiTv,
   },
   {
-    to: '/',
+    to: '/stats',
     title: 'Statas',
     icon: FiBarChart2,
   },
   {
-    to: '/',
+    to: '/settings',
     title: 'Settings',
     icon: FiSettings,
   },
   {
-    to: '/',
+    to: routes.auth.login,
     title: 'Logout',
     icon: FiLogOut,
   },
@@ -56,41 +58,39 @@ const routes = [
 const Drawer = () => (
   <S.DrawerWrapper>
     <S.Header>
-      <Story
-        username="pasqudek"
-        avatar="https://picsum.photos/200"
-        viewed={false}
-      />
+      {/* <Story */}
+      {/*  username="pasqudek" */}
+      {/*  avatar="https://picsum.photos/200" */}
+      {/*  viewed={false} */}
+      {/* /> */}
       <S.UserDetails>
-        <Typography variant="h5">Dawid Wesolowski</Typography>
-        <Typography variant="subheading2">@pasqudek</Typography>
+        <Typography variant="h2">Dawid Wesolowski</Typography>
+        <Link to="#@pasqudek">@pasqudek</Link>
 
         <S.UserActivityList>
           <S.UserActivity>
-            <Typography variant="h6">46</Typography>
-            <Typography variant="subheading2">posts</Typography>
+            <Typography variant="h3">46</Typography>
+            <Typography variant="body2">posts</Typography>
           </S.UserActivity>
           <S.UserActivity>
-            <Typography variant="h6">2.6k</Typography>
-            <Typography variant="subheading2">followers</Typography>
+            <Typography variant="h3">2.6k</Typography>
+            <Typography variant="body2">followers</Typography>
           </S.UserActivity>
           <S.UserActivity>
-            <Typography variant="h6">526</Typography>
-            <Typography variant="subheading2">following</Typography>
+            <Typography variant="h3">526</Typography>
+            <Typography variant="body2">following</Typography>
           </S.UserActivity>
         </S.UserActivityList>
       </S.UserDetails>
     </S.Header>
 
     <S.NavigationList>
-      {routes.map(({ to, title, icon }) => (
+      {r.map(({ to, title, icon }) => (
         <S.NavigationItem key={title}>
-          <Link variant="secondary" to={to}>
-            <Typography variant="subheading">
-              <S.NavIcon icon={icon} />
-              {title}
-            </Typography>
-          </Link>
+          <S.NavLink to={to}>
+            <S.NavIcon variant="small" type={icon} />
+            {title}
+          </S.NavLink>
         </S.NavigationItem>
       ))}
     </S.NavigationList>

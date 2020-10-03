@@ -25,6 +25,7 @@ import FeedPage from 'pages/FeedPage/Loadable';
 import LoginPage from 'pages/LoginPage/Loadable';
 import RegisterPage from 'pages/RegisterPage/Loadable';
 import NotFoundPage from 'pages/NotFoundPage/Loadable';
+import Drawer from 'components/Drawer/Loadable';
 
 import routes from 'utils/routes';
 import { makeSelectIsAuthenticated } from './selectors';
@@ -60,7 +61,8 @@ const App = ({ isAuthenticated }) => (
 
     <AppWrapper>
       <Switch>
-        {/* <Route exact path={routes.feed} component={FeedPage} /> */}
+        <Drawer />
+        <Route exact path={routes.feed} component={FeedPage} />
         <Route exact path={routes.auth.login} component={LoginPage} />
         <Route exact path={routes.auth.register} component={RegisterPage} />
         <Route path={routes.notFound} component={NotFoundPage} />

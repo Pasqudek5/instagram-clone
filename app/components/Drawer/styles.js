@@ -1,14 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import theme from 'styled-theming';
+import { Link, NavLink as NavigationLink } from 'react-router-dom';
+import { Light, Dark } from 'themes';
+import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
 
 import Icon from 'components/Icon';
-import Link from 'components/Link';
+
+const DrawerTheme = theme('mode', {
+  [LIGHT_MODE]: css`
+    background-color: ${Light.background.alt};
+  `,
+  [DARK_MODE]: css`
+    background-color: ${Dark.background.alt};
+  `,
+});
 
 export const DrawerWrapper = styled.aside`
-  height: 100%;
-  min-width: 30rem;
+  ${DrawerTheme};
+  padding: ${({ theme }) => theme.space['6']} ${({ theme }) => theme.space['1']}
+    ${({ theme }) => theme.space['0']} ${({ theme }) => theme.space['1']};
+  height: 100vh;
   max-width: 30rem;
-  background-color: ${({ theme }) => theme.background.secondary};
-  padding: ${({ theme }) => theme.spacing.lg};
 `;
 
 export const Header = styled.header`
@@ -21,14 +33,16 @@ export const Header = styled.header`
 `;
 
 export const UserDetails = styled.div`
-  margin: 2rem 0 5rem 0;
+  margin: ${({ theme }) => theme.space['2']} ${({ theme }) => theme.space['0']}
+    ${({ theme }) => theme.space['5']} ${({ theme }) => theme.space['0']};
   width: 100%;
   justify-content: center;
+  text-align: center;
 `;
 
 export const UserActivityList = styled.ul`
-  margin-top: 3rem;
-  padding: 0;
+  margin-top: ${({ theme }) => theme.space['3']};
+  padding: ${({ theme }) => theme.space['1']};
   list-style-type: none;
   display: flex;
   align-items: center;
@@ -37,7 +51,7 @@ export const UserActivityList = styled.ul`
 export const UserActivity = styled.li`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
 `;
 
@@ -46,18 +60,64 @@ export const NavigationList = styled.nav`
 `;
 
 export const NavIcon = styled(Icon)`
-  margin-right: ${({ theme }) => theme.spacing.xs};
+  margin-right: ${({ theme }) => theme.space['2']};
 `;
 
-export const NavigationItem = styled.li`
-  & > ${Link} {
-    padding: ${({ theme }) => theme.spacing.xs}
-      ${({ theme }) => theme.spacing.sm};
-    border-radius: ${({ theme }) => theme.radius.md};
-  }
+export const NavigationItem = styled.li``;
 
-  :hover * {
-    background-color: ${({ theme }) => theme.background.primary};
-    color: ${({ theme }) => theme.text.light};
-  }
+const NavLinkTheme = theme('mode', {
+  [LIGHT_MODE]: css`
+    color: ${Light.text.base};
+
+    &:hover {
+      background-color: ${Light.background.alt2};
+      color: ${Light.text.link};
+
+      & > * {
+        color: ${Light.text.link};
+      }
+    }
+
+    &.active {
+      color: ${Light.text.link};
+
+      & > * {
+        color: ${Light.text.link};
+      }
+    }
+  `,
+  [DARK_MODE]: css`
+    color: ${Dark.text.base};
+
+    &:hover {
+      background-color: ${Dark.background.alt2};
+      color: ${Dark.text.link};
+
+      & > * {
+        color: ${Dark.text.link};
+      }
+    }
+
+    &.active {
+      color: ${Dark.text.link};
+
+      & > * {
+        color: ${Dark.text.link};
+      }
+    }
+  `,
+});
+
+export const NavLink = styled(NavigationLink)`
+  ${NavLinkTheme};
+  padding: ${({ theme }) => theme.space['1']} ${({ theme }) => theme.space['1']};
+  border-radius: ${({ theme }) => theme.border.radius.medium};
+  font-size: ${({ theme }) => theme.font.size['5']};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  display: flex;
+  align-items: center;
+  justify-content: inherit;
+  text-decoration: none;
+
+  transition: background-color ${({ theme }) => theme.timing.short} ease-in;
 `;
