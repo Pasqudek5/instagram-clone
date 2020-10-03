@@ -1,35 +1,34 @@
 import styled, { css } from 'styled-components';
-import Input from 'components/Input';
-import Icon from 'components/Icon';
-import Link from 'components/Link';
+import theme from 'styled-theming';
+import { Light, Dark } from 'themes';
+import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
 
-const BaseNavStyles = css`
+import Input from 'components/Input';
+
+const NavTheme = theme('mode', {
+  [LIGHT_MODE]: css`
+    background-color: ${Light.background.base};
+  `,
+  [DARK_MODE]: css`
+    background-color: ${Dark.background.base};
+  `,
+});
+
+export const NavWrapper = styled.nav`
+  ${NavTheme};
+  padding: ${({ theme }) => theme.space['1']};
   position: fixed;
   left: 0;
   top: 0;
-`;
-
-export const NavWrapper = styled.nav`
-  ${BaseNavStyles};
   width: 100%;
   height: 6rem;
-  background-color: ${({ theme }) => theme.palette.background};
   display: flex;
   align-items: center;
-  padding: 0 ${({ theme }) => theme.spacing.lg} 0 37rem;
-`;
-
-export const DrawerWrapper = styled.aside`
-  ${BaseNavStyles};
-  height: 100%;
-  width: 35rem;
-  background-color: ${({ theme }) => theme.palette.gray};
-  padding: ${({ theme }) => theme.spacing.lg};
 `;
 
 export const SearchInput = styled(Input)`
-  max-width: 50%;
-  margin-right: auto;
+  max-width: 30rem;
+  margin: 0 auto;
 `;
 
 export const Header = styled.header`
@@ -39,46 +38,4 @@ export const Header = styled.header`
   align-items: center;
   justify-content: center;
   text-align: center;
-`;
-
-export const UserDetails = styled.div`
-  margin: 2rem 0 5rem 0;
-  width: 100%;
-  justify-content: center;
-`;
-
-export const UserActivityList = styled.ul`
-  margin-top: 3rem;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-export const UserActivity = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-export const NavigationList = styled.nav`
-  list-style-type: none;
-`;
-
-export const NavIcon = styled(Icon)`
-  margin-right: ${({ theme }) => theme.spacing.xs};
-`;
-
-export const NavigationItem = styled.li`
-  & > ${Link} {
-    padding: ${({ theme }) => theme.spacing.xs}
-      ${({ theme }) => theme.spacing.sm};
-    border-radius: ${({ theme }) => theme.radius.md};
-  }
-
-  :hover * {
-    background-color: ${({ theme }) => theme.palette.primary};
-    color: ${({ theme }) => theme.palette.text.white};
-  }
 `;

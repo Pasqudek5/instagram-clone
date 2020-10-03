@@ -9,7 +9,7 @@ const StyledImage = styled(NormalImg)`
   object-fit: contain;
   display: none;
 
-  ${({ theme }) => theme.mq.tablet`
+  ${({ theme }) => theme.mq.md`
     display: block;
   `}
 `;

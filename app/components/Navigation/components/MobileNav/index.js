@@ -15,19 +15,19 @@ import * as S from './styles';
 
 const MobileNavTop = () => (
   <S.MobileNavTopWrapper>
-    <Icon icon={FiSettings} />
-    <Logo type="text" />
-    <Icon icon={FiMail} />
+    <Icon variant="small" type={FiSettings} />
+    <Logo type="icon" />
+    <Icon variant="small" type={FiMail} />
   </S.MobileNavTopWrapper>
 );
 
 const MobileNavBottom = () => (
   <S.MobileNavBottomWrapper>
-    <Icon color="#000" icon={FiHome} />
-    <Icon icon={FiSearch} />
-    <Icon icon={FiPlusSquare} />
-    <Icon icon={FiHeart} />
-    <Icon icon={FiUser} />
+    <Icon variant="small" type={FiHome} />
+    <Icon variant="small" type={FiSearch} />
+    <Icon variant="small" type={FiPlusSquare} />
+    <Icon variant="small" type={FiHeart} />
+    <Icon variant="small" type={FiUser} />
   </S.MobileNavBottomWrapper>
 );
 
