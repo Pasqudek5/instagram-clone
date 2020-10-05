@@ -36,7 +36,6 @@ const StoriesWrapper = styled.section`
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: red;
 `;
 
 export const Stories = () => {
