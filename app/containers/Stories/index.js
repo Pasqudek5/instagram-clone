@@ -21,9 +21,21 @@ import reducer from './reducer';
 import saga from './saga';
 const key = 'stories';
 
-const StoriesWrapper = styled.section`
-  display: inline-flex;
+const W = styled.div`
+  min-width: 100%;
+  min-height: 100%;
+  position: relative;
   background-color: red;
+  overflow-x: hidden;
+`;
+
+const StoriesWrapper = styled.section`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
 `;
 
 export const Stories = () => {
@@ -32,18 +44,23 @@ export const Stories = () => {
   const __STORIES__ = Array(90).fill(1);
 
   return (
-    <ScrollContainer component="section" onScroll={() => console.log('hello')}>
-      <StoriesWrapper>
-        {__STORIES__.map((_, i) => (
-          <Story
-            key={i}
-            username="pasqudek"
-            avatar="https://picsum.photos/200"
-            viewed={Math.random() > 0.3}
-          />
-        ))}
-      </StoriesWrapper>
-    </ScrollContainer>
+    <W>
+      <ScrollContainer
+        component="section"
+        onScroll={() => console.log('hello')}
+      >
+        <StoriesWrapper>
+          {__STORIES__.map((_, i) => (
+            <Story
+              key={i}
+              username="pasqudek"
+              avatar="https://picsum.photos/200"
+              viewed={Math.random() > 0.3}
+            />
+          ))}
+        </StoriesWrapper>
+      </ScrollContainer>
+    </W>
   );
 };
 

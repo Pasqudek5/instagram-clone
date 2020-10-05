@@ -14,14 +14,15 @@ const NavTheme = theme('mode', {
 
 export const MobileNavWrapper = styled.nav`
   ${NavTheme};
+  z-index: ${({ theme }) => theme.zIndex.overlay};
+  padding: ${({ theme }) => theme.space['0']} ${({ theme }) => theme.space['1']};
+  height: ${({ theme }) => theme.space['6']};
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: fixed;
   left: 0;
   width: 100%;
-  padding: 0 ${({ theme }) => theme.space['1']};
-  height: 6rem;
 `;
 
 export const MobileNavTopWrapper = styled(MobileNavWrapper)`

@@ -9,7 +9,7 @@ import {
   FiMail,
 } from 'react-icons/fi';
 
-// import Story from 'components/Story';
+import Story from 'components/Story';
 import Link from 'components/Link';
 import Typography from 'components/Typography';
 
@@ -58,11 +58,11 @@ const r = [
 const Drawer = () => (
   <S.DrawerWrapper>
     <S.Header>
-      {/* <Story */}
-      {/*  username="pasqudek" */}
-      {/*  avatar="https://picsum.photos/200" */}
-      {/*  viewed={false} */}
-      {/* /> */}
+      <Story
+        username="pasqudek"
+        avatar="https://picsum.photos/200"
+        viewed={false}
+      />
       <S.UserDetails>
         <Typography variant="h2">Dawid Wesolowski</Typography>
         <Link to="#@pasqudek">@pasqudek</Link>
@@ -89,7 +89,7 @@ const Drawer = () => (
         <S.NavigationItem key={title}>
           <S.NavLink to={to}>
             <S.NavIcon variant="small" type={icon} />
-            {title}
+            <Typography variant="h3">{title}</Typography>
           </S.NavLink>
         </S.NavigationItem>
       ))}
