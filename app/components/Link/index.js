@@ -11,7 +11,7 @@ import theme from 'styled-theming';
 import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
 import { Light, Dark } from 'themes';
 
-const themeLink = theme('mode', {
+const LinkTheme = theme('mode', {
   [LIGHT_MODE]: css`
     color: ${Light.text.link};
   `,
@@ -21,12 +21,12 @@ const themeLink = theme('mode', {
 });
 
 const StyledLink = styled(Link)`
-  ${themeLink};
+  ${LinkTheme};
   font-size: ${({ theme }) => theme.font.size['5']};
   font-weight: ${({ theme }) => theme.font.weight.semibold};
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: inherit;
   text-decoration: none;
 `;
 

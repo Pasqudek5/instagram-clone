@@ -16,7 +16,7 @@ export default {
     success: '#00e6cb',
   },
   text: {
-    base: '#000000',
+    base: '#0e0e10',
     alt: 'rgba(0, 0, 0, 0.8)',
     alt2: 'rgba(0, 0, 0, 0.6)',
     link: '#772ce8',
