@@ -17,6 +17,7 @@ const NavTheme = theme('mode', {
 export const NavWrapper = styled.nav`
   ${NavTheme};
   padding: ${({ theme }) => theme.space['1']};
+  z-index: ${({ theme }) => theme.zIndex.overlay};
   position: fixed;
   left: 0;
   top: 0;

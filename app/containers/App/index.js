@@ -34,7 +34,7 @@ import GlobalStyle from '../../global-styles';
 
 console.log({ Light });
 
-const themeAppWrapper = theme('mode', {
+const AppWrapperTheme = theme('mode', {
   [LIGHT_MODE]: css`
     background-color: ${Light.background.body};
   `,
@@ -43,12 +43,11 @@ const themeAppWrapper = theme('mode', {
   `,
 });
 
-const AppWrapper = styled.div`
-  ${themeAppWrapper};
-  margin: 0 auto;
+const AppWrapper = styled.main`
+  ${AppWrapperTheme};
+  margin-top: ${({ theme }) => theme.space['6']};
   display: flex;
   min-height: 100%;
-  flex-direction: column;
 `;
 
 const App = ({ isAuthenticated }) => (
@@ -60,8 +59,8 @@ const App = ({ isAuthenticated }) => (
     {isAuthenticated ? <Navigation /> : <Navigation />}
 
     <AppWrapper>
+      <Drawer />
       <Switch>
-        <Drawer />
         <Route exact path={routes.feed} component={FeedPage} />
         <Route exact path={routes.auth.login} component={LoginPage} />
         <Route exact path={routes.auth.register} component={RegisterPage} />

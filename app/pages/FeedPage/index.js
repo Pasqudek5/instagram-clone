@@ -23,14 +23,8 @@ import messages from './messages';
 
 const key = 'feedPage';
 
-export const Layout = styled.main`
-  overflow-x: hidden;
-  padding-top: 7rem;
-
-  ${({ theme }) => theme.mq.desktop`
-    padding-left: calc(350px + ${theme.spacing.lg});
-    padding-right: ${theme.spacing.lg};
-  `}
+export const Layout = styled.section`
+  //margin: ${({ theme }) => theme.space['6']} !important;
 `;
 
 export const FeedPage = () => {
@@ -38,13 +32,15 @@ export const FeedPage = () => {
   useInjectSaga({ key, saga });
 
   return (
-    <Layout>
+    <React.Fragment>
       <Helmet>
         <title>FeedPage</title>
         <meta name="description" content="Description of FeedPage" />
       </Helmet>
-      <Stories />
-    </Layout>
+      <Layout>
+        <Stories />
+      </Layout>
+    </React.Fragment>
   );
 };
 

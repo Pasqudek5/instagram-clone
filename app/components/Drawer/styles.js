@@ -19,12 +19,15 @@ export const DrawerWrapper = styled.aside`
   ${DrawerTheme};
   padding: ${({ theme }) => theme.space['6']} ${({ theme }) => theme.space['1']}
     ${({ theme }) => theme.space['0']} ${({ theme }) => theme.space['1']};
+  padding-top: ${({ theme }) => theme.space['6']};
+  position: relative;
+  top: 0;
   height: 100vh;
-  max-width: 30rem;
+  min-width: 25rem;
 `;
 
 export const Header = styled.header`
-  margin-top: 5rem;
+  margin-top: ${({ theme }) => theme.space['2']};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,7 +101,7 @@ const NavLinkTheme = theme('mode', {
       }
     }
 
-    &.active {
+    &.active * {
       color: ${Dark.text.link};
 
       & > * {
