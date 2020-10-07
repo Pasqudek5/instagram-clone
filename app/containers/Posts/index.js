@@ -1,6 +1,6 @@
 /**
  *
- * FeedPage
+ * Posts
  *
  */
 
@@ -14,44 +14,32 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import styled from 'styled-components';
-import Stories from 'containers/Stories';
-import makeSelectFeedPage from './selectors';
+import makeSelectPosts from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-const key = 'feedPage';
-
-export const Layout = styled.section`
-  margin: ${({ theme }) => theme.space['1']};
-  overflow-x: hidden;
-  min-height: 100%;
-`;
-
-export const FeedPage = () => {
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
+export const Posts = () => {
+  useInjectReducer({ key: 'posts', reducer });
+  useInjectSaga({ key: 'posts', saga });
 
   return (
-    <React.Fragment>
+    <div>
       <Helmet>
-        <title>FeedPage</title>
-        <meta name="description" content="Description of FeedPage" />
+        <title>Posts</title>
+        <meta name="description" content="Description of Posts" />
       </Helmet>
-      <Layout>
-        <Stories />
-      </Layout>
-    </React.Fragment>
+      <FormattedMessage {...messages.header} />
+    </div>
   );
 };
 
-FeedPage.propTypes = {
+Posts.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  feedPage: makeSelectFeedPage(),
+  posts: makeSelectPosts(),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -66,4 +54,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(FeedPage);
+)(Posts);

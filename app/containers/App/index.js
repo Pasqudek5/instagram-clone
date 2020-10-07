@@ -28,6 +28,7 @@ import NotFoundPage from 'pages/NotFoundPage/Loadable';
 import Drawer from 'components/Drawer/Loadable';
 
 import routes from 'utils/routes';
+import useMediaQuery from 'hooks/useMediaQuery';
 import { makeSelectIsAuthenticated } from './selectors';
 
 import GlobalStyle from '../../global-styles';
@@ -50,27 +51,34 @@ const AppWrapper = styled.main`
   min-height: 100%;
 `;
 
-const App = ({ isAuthenticated }) => (
-  <React.Fragment>
-    <Helmet titleTemplate="%s - Instagram" defaultTitle="Instagram">
-      <meta name="description" content="A React.js Boilerplate application" />
-    </Helmet>
+const App = ({ isAuthenticated }) => {
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
 
-    {isAuthenticated ? <Navigation /> : <Navigation />}
+  return (
+    <React.Fragment>
+      <Helmet titleTemplate="%s - Instagram" defaultTitle="Instagram">
+        <meta name="description" content="A React.js Boilerplate application" />
+      </Helmet>
 
-    <AppWrapper>
-      <Drawer />
-      <Switch>
-        <Route exact path={routes.feed} component={FeedPage} />
-        <Route exact path={routes.auth.login} component={LoginPage} />
-        <Route exact path={routes.auth.register} component={RegisterPage} />
-        <Route path={routes.notFound} component={NotFoundPage} />
-      </Switch>
+      {/* {isAuthenticated && <Navigation />} */}
+      {/* {isDesktop && isAuthenticated && <Drawer />} */}
 
-      <GlobalStyle />
-    </AppWrapper>
-  </React.Fragment>
-);
+      <Navigation />
+
+      <AppWrapper>
+        {isDesktop && <Drawer />}
+        <Switch>
+          <Route exact path={routes.feed} component={FeedPage} />
+          <Route exact path={routes.auth.login} component={LoginPage} />
+          <Route exact path={routes.auth.register} component={RegisterPage} />
+          <Route path={routes.notFound} component={NotFoundPage} />
+        </Switch>
+
+        <GlobalStyle />
+      </AppWrapper>
+    </React.Fragment>
+  );
+};
 
 App.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,

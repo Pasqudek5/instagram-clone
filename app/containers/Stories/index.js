@@ -21,51 +21,43 @@ import reducer from './reducer';
 import saga from './saga';
 const key = 'stories';
 
-const W = styled.div`
-  min-width: 100%;
-  min-height: 100%;
-  position: relative;
-  background-color: red;
-  overflow-x: hidden;
-`;
-
 const StoriesWrapper = styled.section`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
+  margin: ${({ theme }) => theme.space['3']} ${({ theme }) => theme.space['0']};
+
+  & > * {
+    margin: ${({ theme }) => theme.space['0']}
+      ${({ theme }) => theme.space['05']};
+
+    &:first-child {
+      margin-left: ${({ theme }) => theme.space['0']};
+    }
+    &:last-child {
+      margin-left: ${({ theme }) => theme.space['0']};
+    }
+  }
 `;
 
-export const Stories = () => {
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
-  const __STORIES__ = Array(90).fill(1);
+const __STORIES__ = Array(90).fill(1);
 
-  return (
-    <W>
-      <ScrollContainer
-        component="section"
-        onScroll={() => console.log('hello')}
-      >
-        <StoriesWrapper>
-          {__STORIES__.map((_, i) => (
-            <Story
-              key={i}
-              username="pasqudek"
-              avatar="https://picsum.photos/200"
-              viewed={Math.random() > 0.3}
-            />
-          ))}
-        </StoriesWrapper>
-      </ScrollContainer>
-    </W>
-  );
-};
+export const Stories = ({ handleOpenStory }) => (
+  <ScrollContainer component="section">
+    <StoriesWrapper>
+      {__STORIES__.map((_, i) => (
+        <Story
+          key={i}
+          username="pasqudek"
+          avatar="https://picsum.photos/200"
+          viewed={Math.random() > 0.3}
+          handleOpenStory={handleOpenStory}
+        />
+      ))}
+    </StoriesWrapper>
+  </ScrollContainer>
+);
 
 Stories.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  handleOpenStory: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -73,7 +65,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatch,
+  handleOpenStory: id => console.log('story id', id),
 });
 
 const withConnect = connect(
