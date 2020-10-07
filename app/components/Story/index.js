@@ -26,8 +26,8 @@ const UserAvatar = styled(Img)`
   border-radius: 50%;
 `;
 
-const Story = ({ handleOpenStory, username, avatar, viewed }) => (
-  <StatusWrapper onClick={() => handleOpenStory(username)}>
+const Story = ({ handleOpenStory, username, avatar, viewed, ...props }) => (
+  <StatusWrapper onClick={() => handleOpenStory(username)} {...props}>
     <StatusCircle viewed={viewed} />
     <UserAvatar src={avatar} alt={`${username} profile photo`} />
   </StatusWrapper>
@@ -40,4 +40,4 @@ Story.propTypes = {
   viewed: PropTypes.bool.isRequired,
 };
 
-export default Story;
+export default styled(Story)``;

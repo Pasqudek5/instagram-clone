@@ -154,8 +154,8 @@ const typography = {
   body2: 'p',
 };
 
-const Typography = ({ variant, children }) => (
-  <StyledTypography as={typography[variant]} variant={variant}>
+const Typography = ({ variant, children, ...props }) => (
+  <StyledTypography as={typography[variant]} variant={variant} {...props}>
     {children}
   </StyledTypography>
 );
@@ -165,4 +165,4 @@ Typography.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Typography;
+export default styled(Typography)``;

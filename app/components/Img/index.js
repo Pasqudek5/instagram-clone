@@ -6,10 +6,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-const Img = ({ className, src, alt }) => (
-  <img className={className} src={src} alt={alt} />
+const Img = ({ className, src, alt, ...props }) => (
+  <img className={className} src={src} alt={alt} {...props} />
 );
 
 Img.propTypes = {
@@ -18,4 +18,4 @@ Img.propTypes = {
   alt: PropTypes.string.isRequired,
 };
 
-export default Img;
+export default styled(Img)``;
