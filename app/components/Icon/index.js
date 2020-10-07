@@ -73,4 +73,4 @@ Icon.propTypes = {
   type: PropTypes.elementType.isRequired,
 };
 
-export default Icon;
+export default styled(Icon)``;

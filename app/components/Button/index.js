@@ -122,12 +122,13 @@ const StyledButtonIcon = styled(StyledButton)`
 
 // transition: all 200ms ease-in-out;
 
-const Button = ({ onClick, type, disabled, variant, children }) => (
+const Button = ({ onClick, type, disabled, variant, children, ...props }) => (
   <StyledButton
     onClick={onClick}
     variant={variant}
     type={type}
     disabled={disabled}
+    {...props}
   >
     {children}
   </StyledButton>
@@ -144,7 +145,7 @@ Button.propTypes = {
   variant: PropTypes.oneOf(['default', 'small', 'large', 'full-width', 'icon']),
   children: PropTypes.node.isRequired,
 };
-export default Button;
+export default styled(Button)``;
 
 export const ButtonIcon = ({ onClick, type, disabled, variant, children }) => (
   <StyledButtonIcon

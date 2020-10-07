@@ -8,43 +8,44 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import styled from 'styled-components';
+import Post from 'components/Post';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectPosts from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import messages from './messages';
 
-export const Posts = () => {
-  useInjectReducer({ key: 'posts', reducer });
-  useInjectSaga({ key: 'posts', saga });
+const Layout = styled.section`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 
-  return (
-    <div>
-      <Helmet>
-        <title>Posts</title>
-        <meta name="description" content="Description of Posts" />
-      </Helmet>
-      <FormattedMessage {...messages.header} />
-    </div>
-  );
-};
+const __POSTS__ = Array(52).fill(1);
 
-Posts.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+export const Posts = () => (
+  <div>
+    <Helmet>
+      <title>Posts</title>
+      <meta name="description" content="Description of Posts" />
+    </Helmet>
+    <Layout>
+      {__POSTS__.map((post, key) => (
+        <Post key={key} username="pasqudek" handleOpenStory={() => {}} />
+      ))}
+    </Layout>
+  </div>
+);
+
+Posts.propTypes = {};
 
 const mapStateToProps = createStructuredSelector({
   posts: makeSelectPosts(),
 });
 
-const mapDispatchToProps = dispatch => ({
-  dispatch,
-});
+const mapDispatchToProps = dispatch => ({});
 
 const withConnect = connect(
   mapStateToProps,

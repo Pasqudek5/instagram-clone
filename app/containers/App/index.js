@@ -46,9 +46,9 @@ const AppWrapperTheme = theme('mode', {
 
 const AppWrapper = styled.main`
   ${AppWrapperTheme};
-  margin-top: ${({ theme }) => theme.space['6']};
+  margin: ${({ theme }) => theme.space['6']} ${({ theme }) => theme.space['0']};
   display: flex;
-  min-height: 100%;
+  min-height: 110vh;
 `;
 
 const App = ({ isAuthenticated }) => {

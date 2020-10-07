@@ -34,4 +34,4 @@ StyledLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-export default StyledLink;
+export default styled(StyledLink)``;

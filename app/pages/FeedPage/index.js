@@ -16,6 +16,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import styled from 'styled-components';
 import Stories from 'containers/Stories';
+import Posts from 'containers/Posts';
 import makeSelectFeedPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -41,6 +42,7 @@ export const FeedPage = () => {
       </Helmet>
       <Layout>
         <Stories />
+        <Posts />
       </Layout>
     </React.Fragment>
   );
