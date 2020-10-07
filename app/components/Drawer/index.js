@@ -62,6 +62,7 @@ const Drawer = () => (
         username="pasqudek"
         avatar="https://picsum.photos/200"
         viewed={false}
+        handleOpenStory={id => console.log('open story drawer', id)}
       />
       <S.UserDetails>
         <Typography variant="h2">Dawid Wesolowski</Typography>

@@ -18,6 +18,7 @@ const StatusWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 `;
 
 const UserAvatar = styled(Img)`
@@ -25,14 +26,15 @@ const UserAvatar = styled(Img)`
   border-radius: 50%;
 `;
 
-const Story = ({ username, avatar, viewed }) => (
-  <StatusWrapper>
+const Story = ({ handleOpenStory, username, avatar, viewed }) => (
+  <StatusWrapper onClick={() => handleOpenStory(username)}>
     <StatusCircle viewed={viewed} />
     <UserAvatar src={avatar} alt={`${username} profile photo`} />
   </StatusWrapper>
 );
 
 Story.propTypes = {
+  handleOpenStory: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
   viewed: PropTypes.bool.isRequired,
