@@ -11,6 +11,7 @@ import {
 
 import Story from 'components/Story';
 import Link from 'components/Link';
+import NavLink from 'components/NavLink';
 import Typography from 'components/Typography';
 
 import routes from 'utils/routes';
@@ -88,10 +89,10 @@ const Drawer = () => (
     <S.NavigationList>
       {r.map(({ to, title, icon }) => (
         <S.NavigationItem key={title}>
-          <S.NavLink to={to}>
+          <NavLink to={to}>
             <S.NavIcon variant="small" type={icon} />
             <Typography variant="h3">{title}</Typography>
-          </S.NavLink>
+          </NavLink>
         </S.NavigationItem>
       ))}
     </S.NavigationList>

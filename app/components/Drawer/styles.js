@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import theme from 'styled-theming';
-import { Link, NavLink as NavigationLink } from 'react-router-dom';
 import { Light, Dark } from 'themes';
 import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
 
@@ -67,60 +66,3 @@ export const NavIcon = styled(Icon)`
 `;
 
 export const NavigationItem = styled.li``;
-
-const NavLinkTheme = theme('mode', {
-  [LIGHT_MODE]: css`
-    color: ${Light.text.base};
-
-    &:hover {
-      background-color: ${Light.background.alt2};
-      color: ${Light.text.link};
-
-      & > * {
-        color: ${Light.text.link};
-      }
-    }
-
-    &.active {
-      color: ${Light.text.link};
-
-      & > * {
-        color: ${Light.text.link};
-      }
-    }
-  `,
-  [DARK_MODE]: css`
-    color: ${Dark.text.base};
-
-    &:hover {
-      background-color: ${Dark.background.alt2};
-      color: ${Dark.text.link};
-
-      & > * {
-        color: ${Dark.text.link};
-      }
-    }
-
-    &.active * {
-      color: ${Dark.text.link};
-
-      & > * {
-        color: ${Dark.text.link};
-      }
-    }
-  `,
-});
-
-export const NavLink = styled(NavigationLink)`
-  ${NavLinkTheme};
-  padding: ${({ theme }) => theme.space['1']} ${({ theme }) => theme.space['1']};
-  border-radius: ${({ theme }) => theme.border.radius.medium};
-  font-size: ${({ theme }) => theme.font.size['5']};
-  font-weight: ${({ theme }) => theme.font.weight.semibold};
-  display: flex;
-  align-items: center;
-  justify-content: inherit;
-  text-decoration: none;
-
-  transition: background-color ${({ theme }) => theme.timing.short} ease-in;
-`;

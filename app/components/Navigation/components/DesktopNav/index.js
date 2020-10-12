@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Icon from 'components/Icon';
 import Button, { ButtonIcon } from 'components/Button';
 import Logo from 'components/Logo';
-import Link from 'components/Link';
+import NavLink from 'components/NavLink';
 import Typography from 'components/Typography';
 import { FiBell, FiMail, FiPlusSquare } from 'react-icons/fi';
 
@@ -12,9 +12,9 @@ import * as S from './styles';
 
 const DesktopNav = () => (
   <S.NavWrapper>
-    <Link to="/">
+    <NavLink to="/">
       <Logo type="icon" />
-    </Link>
+    </NavLink>
     <S.SearchInput
       placeholder="Search"
       label="Search"
