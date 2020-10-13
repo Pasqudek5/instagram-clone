@@ -80,7 +80,7 @@ export const LoginPage = ({
             Forgot your password?
           </ForgotLink>
           <Button type="submit" variant="full-width">
-            Log in
+            <Typography variant="body">Log in</Typography>
           </Button>
         </Form>
         <Link to={routes.auth.login} variant="secondary">

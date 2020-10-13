@@ -11,6 +11,9 @@ import theme from 'styled-theming';
 import { Light, Dark } from 'themes';
 import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
 
+import Icon from 'components/Icon';
+import Typography from 'components/Typography';
+
 const ButtonMode = theme('mode', {
   [LIGHT_MODE]: css`
     background-color: ${Light.background.alt2};
@@ -19,6 +22,15 @@ const ButtonMode = theme('mode', {
     &:hover {
       background-color: ${Light.background.alt};
     }
+
+    &:disabled {
+      background-color: ${Light.background.disabled};
+
+      ${Icon},
+      ${Typography} {
+        color: ${Dark.text.disabled};
+      }
+    }
   `,
   [DARK_MODE]: css`
     background-color: ${Dark.background.alt2};
@@ -26,6 +38,15 @@ const ButtonMode = theme('mode', {
 
     &:hover {
       background-color: ${Dark.background.alt};
+    }
+
+    &:disabled {
+      background-color: ${Dark.background.disabled};
+
+      ${Icon},
+      ${Typography} {
+        color: ${Dark.text.disabled};
+      }
     }
   `,
 });
@@ -101,6 +122,10 @@ const StyledButton = styled.button`
   border: 0;
   cursor: pointer;
   height: auto;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   &:last-child {
     margin-right: 0;

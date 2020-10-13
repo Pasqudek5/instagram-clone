@@ -7,6 +7,7 @@ export default {
     accent: '#772ce8',
     accentAlt: '#5c16c5',
     accentAlt2: '#451093',
+    disabled: 'hsla(0, 0%, 0%, 0.12)',
   },
   fill: {
     brand: '#9147ff',
@@ -20,5 +21,6 @@ export default {
     alt: 'rgba(0, 0, 0, 0.8)',
     alt2: 'rgba(0, 0, 0, 0.6)',
     link: '#772ce8',
+    disabled: 'hsla(0, 0%, 0%, 0.12)',
   },
 };
