@@ -89,7 +89,7 @@ const colors = {
 };
 
 const StyledButton = styled.button`
-  border-radius: 0.8rem;
+  border-radius: 0.4rem;
   text-transform: uppercase;
   cursor: pointer;
   outline: 0;

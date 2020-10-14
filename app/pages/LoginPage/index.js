@@ -62,42 +62,22 @@ export const LoginPage = ({
           <FormLogo type="icon" />
           <Input
             placeholder="Number, username or email"
-            label="Number, username or email"
             name="login"
             type="text"
-            handleChange={onChangeInputValue}
-            value={login}
+            onChange={onChangeInputValue}
+            value="pasqudek"
           />
           <Input
             placeholder="Password"
-            label="Password"
             name="password"
             type="password"
-            handleChange={onChangeInputValue}
+            onChange={onChangeInputValue}
             value={password}
           />
           <ForgotLink to={routes.auth.forgotPassword} variant="primary">
             Forgot your password?
           </ForgotLink>
-          <Button
-            onClick={() => {}}
-            type="submit"
-            block
-            secondary
-            variant="outlined"
-          >
-            Log in
-          </Button>
-          <Button onClick={() => {}} type="submit" block secondary>
-            Log in
-          </Button>
-          <Button
-            onClick={() => {}}
-            type="submit"
-            block
-            secondary
-            variant="text"
-          >
+          <Button onClick={() => {}} type="submit" block color="primary">
             Log in
           </Button>
         </Form>

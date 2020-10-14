@@ -1,105 +1,81 @@
-/**
- *
- * Input
- *
- */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
-import theme from 'styled-theming';
-import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
-import { Light, Dark } from 'themes';
+import styled from 'styled-components';
 
-const BaseStyles = css`
-  border: 2px solid transparent;
-  border-radius: ${({ theme }) => theme.border.radius.medium};
-  padding: ${({ theme }) => theme.space['1']} ${({ theme }) => theme.space['1']};
-  margin: ${({ theme }) => theme.space['1']} 0;
-  font-size: ${({ theme }) => theme.font.size.body};
-  transition: border-color ${({ theme }) => theme.timing.medium} ease-in;
+const TextFieldWrapper = styled.div`
+  //padding: 1.2rem;
+`;
+
+const Input = styled.input`
+  min-width: 6.4rem;
+  height: 4.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  padding: 0 1.2rem 0 1.6rem;
   outline: 0;
-  width: 100%;
+  border: 2px solid transparent;
+  border-radius: 0.4rem;
+  color: ${({ theme }) => theme.colors.text.base};
+  background-color: ${({ theme }) => theme.colors.background.alt};
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.text.alt2};
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.background.base};
+    border-color: ${({ theme }) => theme.colors.background.accent};
+  }
+
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.background.alt2};
+    border-color: ${({ theme }) => theme.colors.background.accent};
+  }
 `;
 
-const thmeInput = theme('mode', {
-  [LIGHT_MODE]: css`
-    color: ${Light.text.base};
-    background-color: ${Light.background.alt2};
-
-    ::placeholder {
-      color: ${Light.text.alt2};
-    }
-
-    &:hover {
-      border-color: ${Light.text.accentAlt2};
-    }
-    &:focus {
-      border-color: ${Light.background.accent};
-    }
-  `,
-  [DARK_MODE]: css`
-    color: ${Dark.text.base};
-    background-color: ${Dark.background.alt2};
-
-    ::placeholder {
-      color: ${Dark.text.alt2};
-    }
-
-    &:hover {
-      border-color: ${Dark.background.accentAlt2};
-    }
-    &:focus {
-      border-color: ${Dark.background.accent};
-    }
-  `,
-});
-
-const StyledInput = styled.input`
-  ${BaseStyles};
-  ${thmeInput};
+const DetailsField = styled.p`
+  color: ${({ isError, theme }) =>
+    isError ? theme.colors.fill.alert : theme.colors.text.alt2};
+  height: 1.6rem;
+  font-size: 1.2rem;
+  text-align: left;
+  padding-left: 1.6rem;
 `;
 
-const Input = ({
-  label,
-  required,
-  disabled,
-  id,
-  name,
+const TextField = ({
+  type = 'text',
   placeholder,
-  type,
-  handleChange,
-  ...props
+  name,
+  id,
+  value,
+  error,
+  helper,
+  onChange,
 }) => (
-  <StyledInput
-    aria-label={label}
-    aria-required={required}
-    disabled={disabled}
-    id={id}
-    name={name}
-    placeholder={placeholder}
-    type={type}
-    onChange={handleChange}
-    {...props}
-  />
+  <TextFieldWrapper>
+    <Input
+      type={type}
+      placeholder={placeholder}
+      name={name}
+      id={id}
+      onChange={onChange}
+      value={value}
+    />
+    {(error || helper) && (
+      <DetailsField isError={!!error}>{error || helper}</DetailsField>
+    )}
+  </TextFieldWrapper>
 );
 
-Input.defaultProps = {
-  disabled: false,
-  id: null,
-  name: null,
-  required: false,
-};
-
-Input.propTypes = {
-  disabled: PropTypes.bool,
+TextField.propTypes = {
   id: PropTypes.string,
-  name: PropTypes.string,
-  required: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  helper: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['text', 'password', 'search']).isRequired,
-  handleChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(['text', 'email', 'password']),
 };
 
-export default Input;
+export default TextField;
