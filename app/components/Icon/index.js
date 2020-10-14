@@ -48,17 +48,17 @@ const IconVariant = theme.variants('mode', 'variant', {
   },
 });
 
+// ${IconTheme};
+// ${IconVariant};
 const IconWrapper = styled.i`
-  ${IconTheme};
-  ${IconVariant};
   display: inline-flex;
   align-items: center;
   justify-content: center;
 `;
 
-const Icon = ({ type: IconComponent, variant, ...props }) => (
+const Icon = ({ type: IconComponent, variant, className, ...props }) => (
   <IconContext.Provider value={props}>
-    <IconWrapper variant={variant}>
+    <IconWrapper variant={variant} className={className}>
       <IconComponent />
     </IconWrapper>
   </IconContext.Provider>
@@ -69,6 +69,7 @@ Icon.defaultProps = {
 };
 
 Icon.propTypes = {
+  className: PropTypes.string,
   variant: PropTypes.oneOf(['default', 'small', 'large']),
   type: PropTypes.elementType.isRequired,
 };

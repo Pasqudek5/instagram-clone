@@ -1,196 +1,148 @@
-/**
- *
- * Button.js
- *
- */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import theme from 'styled-theming';
-import { Light, Dark } from 'themes';
-import { LIGHT_MODE, DARK_MODE } from 'containers/ThemeProvider/constants';
 
 import Icon from 'components/Icon';
-import Typography from 'components/Typography';
 
-const ButtonMode = theme('mode', {
-  [LIGHT_MODE]: css`
-    background-color: ${Light.background.alt2};
-    color: ${Light.text.base};
+const variants = {
+  text: css`
+    background-color: transparent;
+  `,
+  outlined: css`
+    background-color: transparent;
+    border: 2px solid ${({ theme }) => theme.colors.background.base};
+  `,
+  contained: css``,
+};
 
-    &:hover {
-      background-color: ${Light.background.alt};
-    }
+const sizes = {
+  small: css`
+    width: 5rem;
+    height: 2.8rem;
+    padding: 0 1.24rem;
+    font-size: 1.2rem;
 
-    &:disabled {
-      background-color: ${Light.background.disabled};
-
-      ${Icon},
-      ${Typography} {
-        color: ${Dark.text.disabled};
-      }
+    ${Icon} {
+      font-size: 1.4rem;
+      width: 1.4rem;
+      height: 1.4rem;
     }
   `,
-  [DARK_MODE]: css`
-    background-color: ${Dark.background.alt2};
-    color: ${Dark.text.base};
+  medium: css`
+    min-width: 6.4rem;
+    height: 3.6rem;
+    padding: 0 1.6rem;
+    font-size: 1.4rem;
 
-    &:hover {
-      background-color: ${Dark.background.alt};
-    }
-
-    &:disabled {
-      background-color: ${Dark.background.disabled};
-
-      ${Icon},
-      ${Typography} {
-        color: ${Dark.text.disabled};
-      }
+    ${Icon} {
+      font-size: 1.8rem;
+      width: 1.8rem;
+      height: 1.8rem;
     }
   `,
-});
+  large: css`
+    width: 7.8rem;
+    height: 4.4rem;
+    padding: 0 1.95rem;
+    font-size: 2rem;
 
-const ButtonVariant = theme.variants('mode', 'variant', {
-  default: {
-    [LIGHT_MODE]: css`
-      font-size: ${({ theme }) => theme.component.text.default};
-      height: ${({ theme }) => theme.component.size.default};
-    `,
-    [DARK_MODE]: css`
-      font-size: ${({ theme }) => theme.component.text.default};
-      height: ${({ theme }) => theme.component.size.default};
-    `,
-  },
-  small: {
-    [LIGHT_MODE]: css`
-      font-size: ${({ theme }) => theme.component.text.small};
-      height: ${({ theme }) => theme.component.size.small};
-    `,
-    [DARK_MODE]: css`
-      font-size: ${({ theme }) => theme.component.text.small};
-      height: ${({ theme }) => theme.component.size.small};
-    `,
-  },
-  large: {
-    [LIGHT_MODE]: css`
-      font-size: ${({ theme }) => theme.component.text.large};
-      height: ${({ theme }) => theme.component.size.large};
-    `,
-    [DARK_MODE]: css`
-      font-size: ${({ theme }) => theme.component.text.large};
-      height: ${({ theme }) => theme.component.size.large};
-    `,
-  },
-  'full-width': {
-    [LIGHT_MODE]: css`
-      width: 100%;
-    `,
-    [DARK_MODE]: css`
-      width: 100%;
-    `,
-  },
-  icon: {
-    [LIGHT_MODE]: css`
-      background-color: transparent;
+    ${Icon} {
+      font-size: 1.8rem;
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+  `,
+};
 
-      &:hover {
-        background-color: ${Light.background.alt};
-      }
-    `,
-    [DARK_MODE]: css`
-      background-color: transparent;
+const hasIconStyles = css`
+  ${Icon} {
+    margin-left: -0.4rem;
+    margin-right: 0.8rem;
+  }
+`;
 
-      &:hover {
-        background-color: ${Dark.background.alt};
-      }
-    `,
-  },
-});
+const colors = {
+  primary: css`
+    color: ${({ theme }) => theme.colors.text.base};
+    background-color: ${({ theme }) => theme.colors.background.accentAlt};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.background.accent};
+    }
+
+    &:focus {
+      background-color: ${({ theme }) => theme.colors.background.accentAlt2};
+    }
+  `,
+  secondary: css`
+    color: ${({ theme }) => theme.colors.text.base};
+    background-color: ${({ theme }) => theme.colors.background.alt};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.background.base};
+    }
+
+    &:focus {
+      background-color: ${({ theme }) => theme.colors.background.alt2};
+    }
+  `,
+};
 
 const StyledButton = styled.button`
-  ${ButtonMode};
-  ${ButtonVariant};
-  border-radius: ${({ theme }) => theme.border.radius.medium};
-  padding: ${({ theme }) => theme.space['1']} ${({ theme }) => theme.space['2']};
-  font-size: ${({ theme }) => theme.font.size['5']};
-  margin: ${({ theme }) => theme.space['1']} ${({ theme }) => theme.space['1']};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: 0;
-  border: 0;
+  border-radius: 0.8rem;
+  text-transform: uppercase;
   cursor: pointer;
-  height: auto;
+  outline: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  font-weight: 500;
+  border: none;
+  user-select: none;
 
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
-
-  &:first-child {
-    margin-left: 0;
-  }
+  width: ${({ block }) => (block ? '100%' : 'auto')};
+  ${({ hasIcon }) => hasIcon && hasIconStyles};
+  ${({ color }) => colors[color]};
+  ${({ variant }) => variants[variant]};
+  ${({ size }) => sizes[size]};
 `;
 
-const StyledButtonIcon = styled(StyledButton)`
-  padding-left: ${({ theme }) => theme.space['1']};
-  padding-right: ${({ theme }) => theme.space['2']};
-
-  * :first-child {
-    margin-right: ${({ theme }) => theme.space['05']};
-  }
-`;
-
-// transition: all 200ms ease-in-out;
-
-const Button = ({ onClick, type, disabled, variant, children, ...props }) => (
+const Button = ({
+  color = 'secondary',
+  size = 'medium',
+  type = 'button',
+  variant = 'contained',
+  block = false,
+  disabled = false,
+  onClick,
+  icon,
+  children,
+}) => (
   <StyledButton
-    onClick={onClick}
-    variant={variant}
+    color={color}
+    hasIcon={!!icon}
+    size={size}
     type={type}
+    block={block}
+    variant={variant}
+    onClick={onClick}
     disabled={disabled}
-    {...props}
   >
     {children}
   </StyledButton>
 );
 
-Button.defaultProps = {
-  variant: 'default',
-};
-
 Button.propTypes = {
-  onClick: PropTypes.func,
-  type: PropTypes.oneOf(['submit', 'reset', 'button']),
+  block: PropTypes.bool,
   disabled: PropTypes.bool,
-  variant: PropTypes.oneOf(['default', 'small', 'large', 'full-width', 'icon']),
+  icon: PropTypes.node,
+  color: PropTypes.oneOf(['primary', 'secondary']),
+  type: PropTypes.oneOf(['button', 'submit', 'reset', 'search']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
-export default styled(Button)``;
 
-export const ButtonIcon = ({ onClick, type, disabled, variant, children }) => (
-  <StyledButtonIcon
-    onClick={onClick}
-    variant={variant}
-    type={type}
-    disabled={disabled}
-  >
-    {children}
-  </StyledButtonIcon>
-);
-
-ButtonIcon.defaultProps = {
-  variant: 'default',
-};
-
-ButtonIcon.propTypes = {
-  onClick: PropTypes.func,
-  type: PropTypes.oneOf(['submit', 'reset', 'button']),
-  disabled: PropTypes.bool,
-  variant: PropTypes.oneOf(['default', 'small', 'large', 'full-width', 'icon']),
-  children: PropTypes.node.isRequired,
-};
+export default Button;

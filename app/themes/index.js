@@ -18,4 +18,5 @@ const mq = Object.keys(styles.breakpoint).reduce((acc, label) => {
 export default {
   mq,
   ...styles,
+  colors: { ...Dark },
 };

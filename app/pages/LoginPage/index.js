@@ -79,8 +79,26 @@ export const LoginPage = ({
           <ForgotLink to={routes.auth.forgotPassword} variant="primary">
             Forgot your password?
           </ForgotLink>
-          <Button type="submit" variant="full-width">
-            <Typography variant="body">Log in</Typography>
+          <Button
+            onClick={() => {}}
+            type="submit"
+            block
+            secondary
+            variant="outlined"
+          >
+            Log in
+          </Button>
+          <Button onClick={() => {}} type="submit" block secondary>
+            Log in
+          </Button>
+          <Button
+            onClick={() => {}}
+            type="submit"
+            block
+            secondary
+            variant="text"
+          >
+            Log in
           </Button>
         </Form>
         <Link to={routes.auth.login} variant="secondary">
