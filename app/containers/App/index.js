@@ -63,10 +63,10 @@ const App = ({ isAuthenticated }) => {
       {/* {isAuthenticated && <Navigation />} */}
       {/* {isDesktop && isAuthenticated && <Drawer />} */}
 
-      <Navigation />
+      {/* <Navigation /> */}
 
       <AppWrapper>
-        {isDesktop && <Drawer />}
+        {/* {isDesktop && <Drawer />} */}
         <Switch>
           <Route exact path={routes.feed} component={FeedPage} />
           <Route exact path={routes.auth.login} component={LoginPage} />
